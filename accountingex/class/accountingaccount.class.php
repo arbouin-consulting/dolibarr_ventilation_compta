@@ -59,7 +59,7 @@ class AccountingAccount extends CommonObject {
 	 */
 	function fetch($rowid = null, $account_number = null) {
 		if ($rowid || $account_number) {
-			$sql = "SELECT * FROM " . MAIN_DB_PREFIX . "accountingaccount WHERE ";
+			$sql = "SELECT * FROM " . MAIN_DB_PREFIX . "accounting_account WHERE ";
 			if ($rowid) {
 				$sql .= " rowid = '" . $rowid . "'";
 			} elseif ($account_number) {
@@ -95,7 +95,7 @@ class AccountingAccount extends CommonObject {
 	}
 	
 	/**
-	 * \brief insert line in accountingaccount
+	 * \brief insert line in accounting_account
 	 * \param user utilisateur qui effectue l'insertion
 	 */
 	function create($user, $notrigger = 0) {
@@ -125,7 +125,7 @@ class AccountingAccount extends CommonObject {
 			// Put here code to add control on parameters values
 			
 		// Insert request
-		$sql = "INSERT INTO " . MAIN_DB_PREFIX . "accountingaccount(";
+		$sql = "INSERT INTO " . MAIN_DB_PREFIX . "accounting_account(";
 		
 		$sql .= "datec";
 		$sql .= ", entity";
@@ -163,7 +163,7 @@ class AccountingAccount extends CommonObject {
 		}
 		
 		if (! $error) {
-			$this->id = $this->db->last_insert_id(MAIN_DB_PREFIX . "accountingaccount");
+			$this->id = $this->db->last_insert_id(MAIN_DB_PREFIX . "accounting_account");
 			
 			if (! $notrigger) {
 				// Uncomment this and change MYOBJECT to your own tag if you
@@ -203,7 +203,7 @@ class AccountingAccount extends CommonObject {
 		
 		$this->db->begin();
 		
-		$sql = "UPDATE " . MAIN_DB_PREFIX . "accountingaccount ";
+		$sql = "UPDATE " . MAIN_DB_PREFIX . "accounting_account ";
 		$sql .= " SET fk_pcg_version = " . ($this->fk_pcg_version ? "'" . $this->db->escape($this->fk_pcg_version) . "'" : "null");
 		$sql .= " , pcg_type = " . ($this->pcg_type ? "'" . $this->db->escape($this->pcg_type) . "'" : "null");
 		$sql .= " , pcg_subtype = " . ($this->pcg_subtype ? "'" . $this->db->escape($this->pcg_subtype) . "'" : "null");
@@ -291,7 +291,7 @@ class AccountingAccount extends CommonObject {
 			}
 			
 			if (! $error) {
-				$sql = "DELETE FROM " . MAIN_DB_PREFIX . "accountingaccount";
+				$sql = "DELETE FROM " . MAIN_DB_PREFIX . "accounting_account";
 				$sql .= " WHERE rowid=" . $this->id;
 				
 				dol_syslog(get_class($this) . "::delete sql=" . $sql);
@@ -327,7 +327,7 @@ class AccountingAccount extends CommonObject {
 	 */
 	function info($id) {
 		$sql = 'SELECT a.rowid, a.datec, a.fk_user_author, a.fk_user_modif, a.tms';
-		$sql .= ' FROM ' . MAIN_DB_PREFIX . 'accountingaccount as a';
+		$sql .= ' FROM ' . MAIN_DB_PREFIX . 'accounting_account as a';
 		$sql .= ' WHERE a.rowid = ' . $id;
 		
 		dol_syslog(get_class($this) . '::info sql=' . $sql);
@@ -370,7 +370,7 @@ class AccountingAccount extends CommonObject {
 		if ($result > 0) {
 			$this->db->begin();
 			
-			$sql = "UPDATE " . MAIN_DB_PREFIX . "accountingaccount ";
+			$sql = "UPDATE " . MAIN_DB_PREFIX . "accounting_account ";
 			$sql .= "SET active = '0'";
 			$sql .= " WHERE rowid = " . $this->db->escape($id);
 			
@@ -401,7 +401,7 @@ class AccountingAccount extends CommonObject {
 		
 		$this->db->begin();
 		
-		$sql = "UPDATE " . MAIN_DB_PREFIX . "accountingaccount ";
+		$sql = "UPDATE " . MAIN_DB_PREFIX . "accounting_account ";
 		$sql .= "SET active = '1'";
 		$sql .= " WHERE rowid = " . $this->db->escape($id);
 		
