@@ -101,7 +101,7 @@ $sql .= " p.rowid as pid, p.ref as pref, p.accountancy_code_sell, aa.rowid as fk
 $sql .= " ct.accountancy_code_sell as account_tva";
 $sql .= " FROM " . MAIN_DB_PREFIX . "facturedet fd";
 $sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "product p ON p.rowid = fd.fk_product";
-$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "accountingaccount aa ON aa.rowid = fd.fk_code_ventilation";
+$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "accounting_account aa ON aa.rowid = fd.fk_code_ventilation";
 $sql .= " JOIN " . MAIN_DB_PREFIX . "facture f ON f.rowid = fd.fk_facture";
 $sql .= " JOIN " . MAIN_DB_PREFIX . "societe s ON s.rowid = f.fk_soc";
 $sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "c_tva ct ON fd.tva_tx = ct.taux AND ct.fk_pays = '" . $idpays . "'";

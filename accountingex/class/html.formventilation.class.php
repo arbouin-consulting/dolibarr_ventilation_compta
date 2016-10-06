@@ -99,7 +99,7 @@ class FormVentilation extends Form {
 		$out = '';
 		
 		$sql = "SELECT DISTINCT aa.account_number, aa.label, aa.rowid, aa.fk_pcg_version";
-		$sql .= " FROM " . MAIN_DB_PREFIX . "accountingaccount as aa";
+		$sql .= " FROM " . MAIN_DB_PREFIX . "accounting_account as aa";
 		$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "accounting_system as asy ON aa.fk_pcg_version = asy.pcg_version";
 		$sql .= " AND asy.rowid = " . $conf->global->CHARTOFACCOUNTS;
 		$sql .= " AND aa.active = 1";
@@ -121,7 +121,7 @@ class FormVentilation extends Form {
 					$obj = $this->db->fetch_object($resql);
 					$label = $obj->account_number . ' - ' . $obj->label;
 					
-					// Remember guy's we store in database llx_facturedet the rowid of accountingaccount and not the account_number
+					// Remember guy's we store in database llx_facturedet the rowid of accounting_account and not the account_number
 					// Because same account_number can be share between different accounting_system and do have the same meaning
 					if (($selectid != '') && $selectid == $obj->rowid) {
 						// $out .= '<option value="' . $obj->account_number . '" selected="selected">' . $label . '</option>';
@@ -158,7 +158,7 @@ class FormVentilation extends Form {
 		$out = '';
 		
 		$sql  = "SELECT DISTINCT pcg_type ";
-		$sql .= " FROM " . MAIN_DB_PREFIX . "accountingaccount a";
+		$sql .= " FROM " . MAIN_DB_PREFIX . "accounting_account a";
 		$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "accounting_system b ON a.fk_pcg_version=b.pcg_version";
 		$sql .= " WHERE b.rowid=".$conf->global->CHARTOFACCOUNTS;
 		$sql .= " ORDER BY pcg_type";
@@ -212,7 +212,7 @@ class FormVentilation extends Form {
 		$out = '';
 		
 		$sql  = "SELECT DISTINCT pcg_subtype ";
-		$sql .= " FROM " . MAIN_DB_PREFIX . "accountingaccount a";
+		$sql .= " FROM " . MAIN_DB_PREFIX . "accounting_account a";
 		$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "accounting_system b ON a.fk_pcg_version=b.pcg_version";
 		$sql .= " WHERE b.rowid=".$conf->global->CHARTOFACCOUNTS;
 		$sql .= " ORDER BY pcg_subtype";

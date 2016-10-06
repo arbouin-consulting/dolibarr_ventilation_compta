@@ -119,7 +119,7 @@ if ($action == 'ventil') {
 
 $sqlCompte = "SELECT a.rowid, a.account_number, a.label, a.fk_pcg_version";
 $sqlCompte .= " , s.rowid, s.pcg_version";
-$sqlCompte .= " FROM " . MAIN_DB_PREFIX . "accountingaccount as a, " . MAIN_DB_PREFIX . "accounting_system as s";
+$sqlCompte .= " FROM " . MAIN_DB_PREFIX . "accounting_account as a, " . MAIN_DB_PREFIX . "accounting_system as s";
 $sqlCompte .= " WHERE a.fk_pcg_version = s.pcg_version AND s.rowid=" . $conf->global->CHARTOFACCOUNTS;
 $sqlCompte .= " AND a.active = '1'";
 $sqlCompte .= " ORDER BY a.account_number ASC";
@@ -162,7 +162,7 @@ $sql .= " , aa.rowid as aarowid";
 $sql .= " FROM " . MAIN_DB_PREFIX . "facture as f";
 $sql .= " INNER JOIN " . MAIN_DB_PREFIX . "facturedet as l ON f.rowid = l.fk_facture";
 $sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "product as p ON p.rowid = l.fk_product";
-$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "accountingaccount as aa ON p.accountancy_code_sell = aa.account_number";
+$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "accounting_account as aa ON p.accountancy_code_sell = aa.account_number";
 $sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "accounting_system as accsys ON accsys.pcg_version = aa.fk_pcg_version";
 $sql .= " WHERE f.fk_statut > 0 AND fk_code_ventilation = 0";
 $sql .= " AND (accsys.rowid='" . $conf->global->CHARTOFACCOUNTS . "' OR p.accountancy_code_sell IS NULL OR p.accountancy_code_sell ='')";
